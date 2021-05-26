@@ -20,21 +20,26 @@ namespace EmployeeWageCalculation
             Random rand = new Random();
             int isPresent = rand.Next(0,3);
 
-            if (isPresent == 1)
+            //using switch case
+            switch (isPresent)
             {
-                dailyWage = WAGE_PER_HR * IS_FULL_TIME;
-                Console.WriteLine($"Daily wage is {dailyWage}");
-
-            }
-            else if (isPresent == 2)
-            {
-                dailyWage = WAGE_PER_HR * IS_PART_TIME;
-                Console.WriteLine($"Daily wage is {dailyWage}");
-
-            }
-            else
-            {
-                Console.WriteLine($"Daily wage is {dailyWage}");
+                case 1:
+                    {
+                        dailyWage = WAGE_PER_HR * IS_FULL_TIME;
+                        Console.WriteLine($"Daily wage is {dailyWage}");
+                        break;
+                    }
+                case 2:
+                    {
+                        dailyWage = WAGE_PER_HR * IS_PART_TIME;
+                        Console.WriteLine($"Daily wage is {dailyWage}");
+                        break;
+                    }
+                default:
+                    {
+                        Console.WriteLine($"Daily wage is {dailyWage}");
+                        break;
+                    }
             }
                 
         }
