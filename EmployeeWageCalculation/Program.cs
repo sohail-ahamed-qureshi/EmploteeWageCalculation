@@ -7,9 +7,9 @@ namespace EmployeeWageCalculation
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Employee wage Calculation ");
-            //check employee attendence
+            //calculate employee Wage
             Employee employee = new Employee();
-            employee.AttendenceCheck();
+            employee.ComputeEmpWage();
         }
     }
 }
