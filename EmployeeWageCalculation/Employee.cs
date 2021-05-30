@@ -4,24 +4,32 @@ using System.Text;
 
 namespace EmployeeWageCalculation
 {
-    public class EmpWageBuilderObject
+    public class EmpWageBuilderArray
     {
-        //properties 
-         private string company;
-         private int wagePerHour;
-         private int numWorkingDays;
-         private int maxHoursPerMonth;
-        private int totalWage;
+        private int numOfCompany = 0;
+        private CompanyEmpWage[] companyEmpWageArray;
 
-        public EmpWageBuilderObject(string company, int wagePerHour, int numWorkingDays, int maxHoursPerMonth)
-        { 
-            //Constructors
-            this.company = company;
-            this.wagePerHour = wagePerHour;
-            this.numWorkingDays = numWorkingDays;
-            this.maxHoursPerMonth = maxHoursPerMonth;
+        public EmpWageBuilderArray()
+        {
+            this.companyEmpWageArray = new CompanyEmpWage[5];
         }
+
+        public void AddCompanyEmpWage(string company, int wagePerHour, int numWorkingDays, int maxHoursPerMonth)
+        {
+            companyEmpWageArray[this.numOfCompany] = new CompanyEmpWage(company, wagePerHour, numWorkingDays, maxHoursPerMonth);
+            numOfCompany++;
+        }
+
         public void ComputeEmpWage()
+        {
+            for (int i=0; i< numOfCompany; i++)
+            {
+                companyEmpWageArray[i].SetTotalEmpWage(this.ComputeEmpWage(this.companyEmpWageArray[i]));
+                Console.WriteLine(this.companyEmpWageArray[i].Result());
+            }
+        }
+
+        private int ComputeEmpWage(CompanyEmpWage companyEmpWage)
         {
             //constants
             const int IS_FULL_TIME = 8;
@@ -36,7 +44,7 @@ namespace EmployeeWageCalculation
             //random number generation
             Random rand = new Random();
             //calculating for month
-            for (days = 1; days <= this.numWorkingDays; days++) // calculating for 20 working days
+            for (days = 1; days <=companyEmpWage.numWorkingDays; days++) // calculating for 20 working days
             {
                 isPresent = rand.Next(0, 3);
                 //using switch case
@@ -44,12 +52,12 @@ namespace EmployeeWageCalculation
                 {
                     case FULL_TIME: // Employee is present full time
                         {
-                            dailyWage = this.wagePerHour * IS_FULL_TIME;
+                            dailyWage =companyEmpWage.wagePerHour * IS_FULL_TIME;
                             break;
                         }
                     case PART_TIME: //employee is present for part time
                         {
-                            dailyWage = this.wagePerHour * IS_PART_TIME;
+                            dailyWage = companyEmpWage.wagePerHour * IS_PART_TIME;
                             break;
                         }
                     default: // employee is absent
@@ -60,21 +68,12 @@ namespace EmployeeWageCalculation
                 }
                 //checking total number of hours
                 totalHours += dailyWage / 20; //calculate total hours worked
-                totalWage += dailyWage; // calculating montly wage
-                if (totalHours >= this.maxHoursPerMonth) //maximum total hours 
+                companyEmpWage.totalWage += dailyWage; // calculating montly wage
+                if (totalHours >= companyEmpWage.maxHoursPerMonth) //maximum total hours 
                     break;
+                Console.WriteLine(" Day#: " + days + " Emp Hrs : "+totalHours);
             }
-            //Console.WriteLine($"Montly wage is {totalWage} and working hours is {totalHours}"); // output 
-            Console.WriteLine();
-            Console.WriteLine($"Company Name :{this.company}");
-            Console.WriteLine($"No. of hours worked :{totalHours}");
-            Console.WriteLine($"Wage Per hour :{this.wagePerHour}");
-            Console.WriteLine($"Monthly wage :{this.totalWage}");
-        }
-        //displaying results
-        public string Result()
-        {
-            return "Total Employee wage for Comapny : " + this.company + " is " + this.totalWage;
-        }
+            return totalHours * companyEmpWage.wagePerHour;
+        } 
     }
 }

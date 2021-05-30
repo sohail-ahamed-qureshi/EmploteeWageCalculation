@@ -13,13 +13,10 @@ namespace EmployeeWageCalculation
         static void Main(string[] args)
         {   
             Console.WriteLine("Welcome to Employee wage Calculation ");
-            //calculate employee Wage
-            EmpWageBuilderObject Reliance = new EmpWageBuilderObject("Reliance" , 30 , 25, 100);
-            EmpWageBuilderObject Infosys = new EmpWageBuilderObject("Infosys" , 40 , 35, 100);
-            Reliance.ComputeEmpWage();
-            Console.WriteLine(Reliance.Result());
-            Infosys.ComputeEmpWage();
-            Console.WriteLine(Infosys.Result());
+            EmpWageBuilderArray empWageBuilder = new EmpWageBuilderArray();
+            empWageBuilder.AddCompanyEmpWage("Reliance", 20, 10, 10);
+            empWageBuilder.AddCompanyEmpWage("Infosys", 20, 10, 10);
+            empWageBuilder.ComputeEmpWage();
         }
     }
 }
