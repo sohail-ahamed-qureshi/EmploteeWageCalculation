@@ -6,11 +6,11 @@ namespace EmployeeWageCalculation
 {
     class Employee
     {
-        public void ComputeEmpWage()
+        public void ComputeEmpWage(string company, int wagePerHour, int numWorkingDays, int maxHoursPerMonth)
         {
             //constants
-            const int WAGE_PER_HR = 20;
-            const int WORKING_DAYS = 20;
+            //const int WAGE_PER_HR = 20;
+            //const int WORKING_DAYS = 20;
             const int IS_FULL_TIME=8;
             const int IS_PART_TIME = 4;
             const int FULL_TIME = 1;
@@ -23,7 +23,7 @@ namespace EmployeeWageCalculation
             //random number generation
             Random rand = new Random();
             //calculating for month
-            for(days =1; days <=WORKING_DAYS; days++) // calculating for 20 working days
+            for(days =1; days <=numWorkingDays; days++) // calculating for 20 working days
             {  
                  isPresent = rand.Next(0, 3);
                 //using switch case
@@ -31,29 +31,35 @@ namespace EmployeeWageCalculation
                 {
                     case FULL_TIME: // Employee is present full time
                         {
-                            dailyWage = WAGE_PER_HR * IS_FULL_TIME;
-                            Console.WriteLine($"Daily wage is {dailyWage}");  // daily wage is 160
+                            dailyWage = wagePerHour * IS_FULL_TIME;
+                           // Console.WriteLine($"Daily wage is {dailyWage}");  // daily wage is 160
                             break;
                         }
                     case PART_TIME: //employee is present for part time
                         {
-                            dailyWage = WAGE_PER_HR * IS_PART_TIME;
-                            Console.WriteLine($"Daily wage is {dailyWage}");  // daily wage is 80
+                            dailyWage = wagePerHour * IS_PART_TIME;
+                         //   Console.WriteLine($"Daily wage is {dailyWage}");  // daily wage is 80
                             break;
                         }
                     default: // employee is absent
                         {
-                            Console.WriteLine($"Daily wage is {dailyWage}"); // daily wage is 0
+                            //Console.WriteLine($"Daily wage is {dailyWage}"); // daily wage is 0
                             break;
                         }   
                 }
                 //checking total number of hours
                 totalHours += dailyWage / 20; //calculate total hours worked
                 totalWage += dailyWage; // calculating montly wage
-                if (totalHours >= 100) // total hours are limited to 100
+                if (totalHours >= maxHoursPerMonth) //maximum total hours 
                     break;
             }
-            Console.WriteLine($"Montly wage is {totalWage} and working hours is {totalHours}"); // output 
+            //Console.WriteLine($"Montly wage is {totalWage} and working hours is {totalHours}"); // output 
+            Console.WriteLine();
+            Console.WriteLine($"Company Name :{company}");
+            Console.WriteLine($"No. of hours worked :{totalHours}");
+            Console.WriteLine($"Wage Per hour :{wagePerHour}");
+            Console.WriteLine($"Monthly wage :{totalWage}");
+            Console.WriteLine();
         }
     }
 }
