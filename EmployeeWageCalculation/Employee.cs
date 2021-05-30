@@ -71,5 +71,10 @@ namespace EmployeeWageCalculation
             Console.WriteLine($"Wage Per hour :{this.wagePerHour}");
             Console.WriteLine($"Monthly wage :{this.totalWage}");
         }
+        //displaying results
+        public string Result()
+        {
+            return "Total Employee wage for Comapny : " + this.company + " is " + this.totalWage;
+        }
     }
 }
