@@ -3,10 +3,16 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace EmployeeWageCalculation
-{
-    class Employee
+{/// <summary>
+/// adding oops concept by making it a abstract class
+/// </summary>
+    public abstract class AttendenceCheck
     {
-        public void AttendenceCheck()
+      public abstract  void Attendence();
+    }
+    class Employee : AttendenceCheck
+    {
+        public override void Attendence()
         {
             //constants
             const int WAGE_PER_HR = 20;
