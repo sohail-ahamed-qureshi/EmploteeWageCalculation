@@ -17,6 +17,7 @@ namespace EmployeeWageCalculation
             empWageBuilder.AddCompanyEmpWage("Reliance", 20, 10, 10);
             empWageBuilder.AddCompanyEmpWage("Infosys", 20, 10, 10);
             empWageBuilder.ComputeEmpWage();
+            Console.WriteLine($"Total wage for Reliance Company : {empWageBuilder.getTotalWage("Reliance")}");
         }
     }
 }

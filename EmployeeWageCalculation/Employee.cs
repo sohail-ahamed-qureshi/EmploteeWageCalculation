@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.Generic;// linkedlists
 using System.Text;
 
 namespace EmployeeWageCalculation
 {/// <summary>
-/// UC12- Storing Multiple companies into list 
+/// UC13- Storing Daily wages into list 
 /// instead of array using array list
 /// advantage of using arraylist is that it has dynamic memory allocation.
 /// we dont have to define particular array size here.
@@ -17,34 +17,37 @@ namespace EmployeeWageCalculation
 
    
     public class EmpWageBuilderArray : IEmployeeWage
-    {/// <summary>
-    /// storing company employee wage in a list instead of array
-    /// </summary>
-        private int numOfCompany = 0;
-        private LinkedList<CompanyEmpWage> companyEmpWageList; 
+    {
+        private LinkedList<CompanyEmpWage> companyEmpWageList;
+        private Dictionary<string, CompanyEmpWage> companyToEmpWageMap;
 
         public EmpWageBuilderArray()
         {
-            //initilizing linked list
+            
             this.companyEmpWageList = new LinkedList<CompanyEmpWage>();
+            this.companyToEmpWageMap = new Dictionary<string, CompanyEmpWage>();
         }
 
         public void AddCompanyEmpWage(string company, int wagePerHour, int numWorkingDays, int maxHoursPerMonth)
         {
-            //calling Companywage arguments with object and adding to list
+            
             CompanyEmpWage companyEmpWage = new CompanyEmpWage(company, wagePerHour, numWorkingDays, maxHoursPerMonth);
             this.companyEmpWageList.AddLast(companyEmpWage);
+            this.companyToEmpWageMap.Add(company, companyEmpWage);
         }
 
         public void ComputeEmpWage()
         {
-            //computing emp wage and adding it to total emp wage
-            //and displaying result
             foreach(CompanyEmpWage companyEmpWage in this.companyEmpWageList)
             {
                 companyEmpWage.SetTotalEmpWage(this.ComputeEmpWage(companyEmpWage));
                 Console.WriteLine(companyEmpWage.Result());           
             }
+        }
+
+        public int getTotalWage(string company)
+        {
+            return this.companyToEmpWageMap[company].totalWage;
         }
 
         private int ComputeEmpWage(CompanyEmpWage companyEmpWage)
