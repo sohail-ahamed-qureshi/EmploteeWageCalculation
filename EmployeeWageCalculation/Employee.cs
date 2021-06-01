@@ -3,8 +3,16 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace EmployeeWageCalculation
-{
-    public class EmpWageBuilderArray
+{/// <summary>
+/// UC11-interface approach for Computing employee wage
+/// </summary>
+    interface IEmployeeWage
+    {
+        void ComputeEmpWage();
+        void AddCompanyEmpWage(string company, int wagePerHour, int numWorkingDays, int maxHoursPerMonth);
+    }
+
+    public class EmpWageBuilderArray : IEmployeeWage
     {
         private int numOfCompany = 0;
         private CompanyEmpWage[] companyEmpWageArray;
