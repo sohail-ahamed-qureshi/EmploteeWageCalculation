@@ -4,7 +4,7 @@ using System.Text;
 
 namespace EmployeeWageCalculation
 {/// <summary>
-/// UC11-interface approach for Computing employee wage
+///  UC11-interface approach for Computing employee wage
 /// </summary>
     interface IEmployeeWage
     {
