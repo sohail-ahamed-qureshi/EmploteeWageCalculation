@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace EmployeeWageCalculation
-{
+{/// <summary>
+/// interface approach for Computing employee wage
+/// </summary>
     interface IEmployeeWage
     {
         void ComputeEmpWage();
+        void AddCompanyEmpWage(string company, int wagePerHour, int numWorkingDays, int maxHoursPerMonth);
     }
 
     public class EmpWageBuilderArray : IEmployeeWage
