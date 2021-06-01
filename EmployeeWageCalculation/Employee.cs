@@ -4,7 +4,12 @@ using System.Text;
 
 namespace EmployeeWageCalculation
 {
-    public class EmpWageBuilderArray
+    interface IEmployeeWage
+    {
+        void ComputeEmpWage();
+    }
+
+    public class EmpWageBuilderArray : IEmployeeWage
     {
         private int numOfCompany = 0;
         private CompanyEmpWage[] companyEmpWageArray;
