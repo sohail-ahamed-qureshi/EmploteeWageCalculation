@@ -36,7 +36,6 @@ namespace EmployeeWageCalculation
             {
                 dailyWage = WAGE_PER_HR * IS_FULL_TIME_HOURS;
                 Console.WriteLine($"Daily wage is {dailyWage}");
-
             }
             if (isPresent == IS_ABSENT)
             {
